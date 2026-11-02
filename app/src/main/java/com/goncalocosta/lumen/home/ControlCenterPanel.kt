@@ -95,7 +95,18 @@ fun ControlCenterPanel(
         enter = fadeIn(tween(180)) + scaleIn(tween(220, easing = EmphasizedDecelerate), initialScale = 0.94f),
         exit = fadeOut(tween(140)) + scaleOut(tween(180, easing = EmphasizedAccelerate), targetScale = 0.94f)
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                // Handle Back here: left unconsumed, Compose spends the first press
+                // moving focus out of the tile (FocusDirection.Exit), so it took two presses to close.
+                .onPreviewKeyEvent { event ->
+                    if (event.key == Key.Back) {
+                        if (event.type == KeyEventType.KeyUp) onDismiss()
+                        true
+                    } else false
+                }
+        ) {
             // Darkened scrim backdrop - clicking dismisses
             Box(
                 modifier = Modifier
