@@ -1,0 +1,2 @@
+HSPLcom/goncalocosta/lumen/home/**;->**(**)**
+Lcom/goncalocosta/lumen/home/**;

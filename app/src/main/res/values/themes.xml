@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sky_top">#FF0A1622</color>
+
+    <style name="Theme.LumenHome" parent="android:Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">@color/sky_top</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

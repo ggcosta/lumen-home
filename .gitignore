@@ -1,0 +1,13 @@
+.gradle/
+**/build/
+local.properties
+*.apk
+*.iml
+.idea/
+.cxx/
+.kotlin/
+.DS_Store
+*.log
+
+# Full-resolution wallpaper originals (resized copies live in app/src/main/assets)
+/wallpapers/
