@@ -27,30 +27,29 @@ internal fun DrawScope.drawMonochromeWhiteGlyph(
 
     when (glyphType) {
         GlassGlyphType.Lumen -> {
-            // Authentic Lumen serif "L" monogram matching Lumen TV's brand identity
-            val glyphH = h * 0.70f
-            val glyphW = glyphH * (28f / 36f)
-            val left = (w - glyphW) / 2f
-            val top = (h - glyphH) / 2f
-
-            val serifW = glyphW * (16f / 28f)
-            val serifH = glyphH * (7f / 36f)
-            val stemW = glyphW * (9f / 28f)
-            val footW = glyphW
-            val footH = glyphH * (10f / 36f)
+            // Lumen "lamp" mark: a rounded L holding a dot, traced from Lumen TV's 120-unit icon grid
+            val unit = h * 0.74f / 77f
+            val ox = cx - 62f * unit
+            val oy = cy - 59f * unit
+            fun at(x: Float, y: Float) = Offset(ox + x * unit, oy + y * unit)
 
             val lPath = Path().apply {
-                moveTo(left, top)
-                lineTo(left + serifW, top)
-                lineTo(left + serifW, top + serifH)
-                lineTo(left + stemW, top + serifH)
-                lineTo(left + stemW, top + glyphH - footH)
-                lineTo(left + footW, top + glyphH - footH)
-                lineTo(left + footW, top + glyphH)
-                lineTo(left, top + glyphH)
-                close()
+                moveTo(at(36f, 28f).x, at(36f, 28f).y)
+                lineTo(at(36f, 74f).x, at(36f, 74f).y)
+                arcTo(
+                    rect = Rect(at(36f, 58f), at(68f, 90f)),
+                    startAngleDegrees = 180f,
+                    sweepAngleDegrees = -90f,
+                    forceMoveTo = false
+                )
+                lineTo(at(88f, 90f).x, at(88f, 90f).y)
             }
-            drawPath(path = lPath, color = white)
+            drawPath(
+                path = lPath,
+                color = white,
+                style = Stroke(width = 15f * unit, cap = StrokeCap.Round, join = StrokeJoin.Round)
+            )
+            drawCircle(color = white, radius = 11f * unit, center = at(66f, 56f))
         }
 
         GlassGlyphType.Meo -> {
